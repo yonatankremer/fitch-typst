@@ -1,5 +1,5 @@
-#import "1.0.0/lib.typ": *
-#import "1.0.0/formula.typ": *
+#import "1.0.0/lib.typ": ded
+#import "1.0.0/formula.typ": sps, spe, asm
 
 De Morgan: $not(p and q) tack (not p or not q)$.
 Proof:
@@ -32,3 +32,4 @@ spe,
 ($not not(not p or not q)$, $not I quad 2,14$),
 ($(not p or not q)$, $not E quad 15$)
 ))
+

@@ -4,7 +4,7 @@
 
 #let frame-length = height
 #let frame-girth = .5pt
-#let frame-line = align(bottom + left, line(angle: 90deg, length: frame-length, stroke: frame-girth))
+#let frame-line = line(angle: 90deg, length: frame-length, stroke: frame-girth)
 
 #let asm-length = 25pt
 #let asm-girth = frame-girth
@@ -13,7 +13,9 @@
 #let space = 11pt
 #let spacing = h(space)
 
-#let add-asm(to) = align(bottom+left, stack(
+
+// note: removing bottom alignment breaks the design. figure out.
+#let add-asm(to) = align(bottom, stack(
   dir: ttb, to,
   move(
     dx: frame-girth/2,
@@ -23,8 +25,7 @@
 
 #let asm-line = add-asm(frame-line)
 
-#let frame-first-line = align(bottom + left,
-  line(angle: 270deg, length: frame-length - 10*frame-girth, stroke: frame-girth))
+#let frame-first-line = line(angle: 270deg, length: frame-length - 10*frame-girth, stroke: frame-girth)
 
 #let asm-first-line = add-asm(frame-first-line)
 
@@ -36,13 +37,13 @@
 }
 
 
-
+#let id = it => it
 
 
 #import "formula.typ": * // constrain later
 
 // returns an array of each formula's array of frame lines and (asm) spaces
-#let frame-arr(fms) = { // parse prior?
+#let frame-arr(fms, frame-style: id, formula-style: id) = { // parse prior?
 
   let frm = ()
   let new = (frame-line,)
@@ -73,7 +74,7 @@
 
     // is a visible line
     else {
-      frm.push(new)
+      frm.push(formula-style(new))
       new.last() = long(new.last())
     }
 
@@ -95,10 +96,11 @@
   return out
 }
 
-#let frame(fms) = {
+#let frame(fms, frame-style: id, formula-style: id) = {
 
-  let arr = frame-arr(fms)
+  let arr = frame-arr(fms, frame-style: frame-style, formula-style: formula-style)
   fms = parse(fms).filter(x => x not in utils)
+
   let out = ()
 
   for (fml, frm) in merge(fms, arr) {
@@ -111,15 +113,13 @@
       ..frm,
       align(left+horizon, move(dx: -move-left - 11pt/2, fml.equation)) // fix constant
       )
-    out.push(new)
+    out.push(align(left,new))
 
   }
 
   return stack(
     dir: ttb,
-    spacing: 0pt, // redundant
     ..out
   )
 
 }
-

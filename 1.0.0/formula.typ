@@ -9,14 +9,18 @@
 
 // utility formulas
 
-#let sps = formula(1,"UTIL subproof start") // starts a subproof
-#let spe = formula(1,"UTIL subproof end") // ends a subproof
-#let asm = formula(1,"UTIL assumption line") // an assumption line
+// starts a subproof
+#let sps = formula(1,"UTIL subproof start")
+
+// ends a subproof
+#let spe = formula(1,"UTIL subproof end")
+
+// an assumption line
+#let asm = formula(1,"UTIL assumption line")
 
 #let utils = (sps, spe, asm)
 
 // parse a single formula; use internally
-// note - can't parse on input because context is required for index insertion
 #let parse-single(fm, line-number) = {
 
   if type(fm) == content { // just an equation
