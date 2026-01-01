@@ -2,8 +2,10 @@
 #import "src/formula.typ": sps, spe, asm
 #import "src/frameline.typ": frameline
 
-De Morgan: $not(p and q) tack (not p or not q)$.
-Proof:
+= Examples
+
+== De Morgan: $not(p and q) tack (not p or not q)$.
+Proof (dynamic mode): 
 #ded(asm-mode: "dynamic", (
 $not(p and q)$,
 asm,
@@ -36,3 +38,25 @@ spe,
 ))
 
 Done!
+
+#pagebreak()
+
+== Natural Deduction Rules
+
+#let and-intro = ded((
+  ($m$, $p$, $$),
+  // ($$,$dots.v$,$$), // have it as a predefined line?
+  ($n$, $q$, $$),
+  // ($$,$dots.v$,$$),
+  ($o$, $(p and q)$, $and I quad m,n$)
+))
+
+#let and-elim = ded((
+  ($m$, $(p and q)$, $$),
+  ($n_1$, $p$, $and E quad m$),
+  ($n_2$, $q$, $and E quad m$),
+))
+
+#stack(dir: ltr, spacing: 15em, and-intro, and-elim)
+
+// note how (it seems as) the ones with paren. are further to the right. Idk if true, but consider.

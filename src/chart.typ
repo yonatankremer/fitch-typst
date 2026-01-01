@@ -14,7 +14,7 @@
     return stack(
       dir: ttb,
       spacing: height - par.leading,
-      ..formulas.map(it => move(dy: par.leading/2, it.rule))
+      ..formulas.map(it => move(dy: (height - par.leading)/2, it.rule))
     )
 }
 

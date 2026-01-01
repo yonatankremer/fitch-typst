@@ -1,4 +1,4 @@
 [package]
 name = "fitch-typst"
-version = "0.0.2"
+version = "0.3.0"
 entrypoint = "lib.typ"

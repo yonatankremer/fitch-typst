@@ -13,32 +13,42 @@
 }
 
 // changes a value of a frameline
+/*
 #let fl-set(fl, key, value) = {
   assert(key in fl.keys(), message: "Field DNE!")
   fl.insert(key, value)
 }
+Doesn't work! I guess Typst creates a new variable in memory.
+*/
 
+/*
 // returns a new modified frameline
 #let fl-with(fl, key, value) = {
   let out = fl
   fl-set(out, key, value)
   return out
 }
+Ignore for now.
+*/
 
 // display a frameline
-#let fl-display(fl) = context {
+#let fl-display(fl) = {
 
   let length = fl.length
   if fl.is-short {length -= 10*fl.thick}
 
   let ln = line(angle: 90deg, length: length, stroke: fl.thick + fl.stroke)
   
-  if fl.is-asm { return align(
-      bottom, stack(dir: ttb, ln,
-      move(
-        dx: fl.thick/2,
-        dy: -fl.asm-thick/2, align(right+bottom,line(length: fl.asm-length, stroke: fl.asm-thick))
-    )))
+  if fl.is-asm {
+    return align(
+      bottom,
+      stack(dir: ttb, ln,
+        move(
+          dx: fl.thick/2,
+          dy: -fl.asm-thick/2, align(right+bottom,line(length: fl.asm-length, stroke: fl.asm-thick))
+        )
+      )
+    )
   }
   else {return ln}
 }
