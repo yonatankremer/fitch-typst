@@ -1,6 +1,5 @@
 ## Functional
-- figure out structure for index and rule alignment!
-    - got it half-fixed. Essentially, it must be divided to 3 columns of content, as the alignment it "kind" (index, frame, rule) dependent, and not row dependent. The rule column refuses to cooperate.
+- constrain [lib.typ](lib.typ) to just the deduction function
 - rethink library structure:
     - a proof environment?
     - ~~default parameters + argument flow~~ no default parameters or input verification beyond [lib.typ](lib.typ) (suppose it is always valid)

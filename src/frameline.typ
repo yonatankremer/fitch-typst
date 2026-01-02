@@ -35,20 +35,19 @@ Ignore for now.
 #let fl-display(fl) = {
 
   let length = fl.length
-  if fl.is-short {length -= 10*fl.thick}
+  if fl.is-short {length -= .5em}
 
-  let ln = line(angle: 90deg, length: length, stroke: fl.thick + fl.stroke)
-  
+  let ln = line(angle: 90deg, length: length, stroke: fl.thick + fl.stroke)  
   if fl.is-asm {
-    return align(
-      bottom,
-      stack(dir: ttb, ln,
-        move(
-          dx: fl.thick/2,
-          dy: -fl.asm-thick/2, align(right+bottom,line(length: fl.asm-length, stroke: fl.asm-thick))
-        )
+    ln = stack(dir: ttb, ln, move(
+      dx: fl.thick/2,
+      dy: -fl.asm-thick/2,
+      line(length: fl.asm-length, stroke: fl.asm-thick)
       )
     )
   }
-  else {return ln}
+  
+  //ln = align(left+bottom, ln) 
+  // won't "work" for some reason
+  return ln
 }

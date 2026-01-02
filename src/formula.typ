@@ -27,7 +27,7 @@
       return formula(
         [#line-number],
         fm,
-        rule: []
+        rule: $$ // changing '$$' to '[]' completely breaks the spacing for some reason!
       )
     }
 
@@ -80,9 +80,11 @@
 
   }
 
+  /* why does this exist?
   let last = formulas.last()
 
   assert((last not in utils) or (last == spe), message: "Can't end the proof with a utility line other than spe!")
+  */
 
   return formulas
   

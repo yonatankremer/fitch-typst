@@ -10,28 +10,26 @@ Proof (dynamic mode):
 $not(p and q)$,
 asm,
 sps,
-$not(not p or not q)$,
-asm,
-sps,
-$not p$,
-asm,
-($(not p or not q)$, $or I quad 3$),
-($tack.t$, $tack.t I quad 2,4$),
-spe,
-($not not p$, $not I quad 3-5$), // automatically add quad as third character?
-($p$, $not E quad 6$),
-sps,
-$not q$,
-asm,
-($(not p or not q)$, $or I quad 8$),
-($tack.t$, $tack.t I quad 2,9$),
-sps,
-spe,
-spe,
-($not not q$, $not I quad 8-10$),
-($q$, $not E quad 11$),
-($(p and q)$, $and I quad 7,12$),
-($tack.t$, $tack.t I quad 1,13$),
+  $not(not p or not q)$,
+  asm,
+  sps,
+    $not p$,
+    asm,
+    ($(not p or not q)$, $or I quad 3$),
+    ($tack.t$, $tack.t I quad 2,4$),
+  spe,
+  ($not not p$, $not I quad 3-5$), // automatically add quad as third character?
+  ($p$, $not E quad 6$),
+  sps,
+    $not q$,
+    asm,
+    ($(not p or not q)$, $or I quad 8$),
+    ($tack.t$, $tack.t I quad 2,9$),
+  spe,
+  ($not not q$, $not I quad 8-10$),
+  ($q$, $not E quad 11$),
+  ($(p and q)$, $and I quad 7,12$),
+  ($tack.t$, $tack.t I quad 1,13$),
 spe,
 ($not not(not p or not q)$, $not I quad 2,14$),
 ($(not p or not q)$, $not E quad 15$),
@@ -60,3 +58,26 @@ Done!
 #stack(dir: ltr, spacing: 15em, and-intro, and-elim)
 
 // note how (it seems as) the ones with paren. are further to the right. Idk if true, but consider.
+
+#pagebreak()
+
+
+Another one: $tack (p or not p)$
+
+#ded((
+sps,
+  $not (p or not p)$,
+  asm,
+  sps,
+    $p$,
+    asm,
+    ($(p or not p)$, $or I quad 2$),
+    ($tack.t$, $tack.t I quad 1,3$),
+  spe,
+  ($not p$, $not I quad 5 2-4$),
+  ($(p or not p)$, $or I quad 5$),
+  ($tack.t$, $tack.t I quad 1,6$),
+spe,
+($not not (p or not p)$, $not I quad 1-7$),
+($p or not p$, $not E 8$)
+))
